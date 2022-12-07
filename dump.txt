@@ -1,0 +1,29 @@
+gen_code(LD_INT, 1);
+                int address = idcheck($2);
+                gen_code(STORE, address);
+
+                $1 = gen_label(); 
+                gen_code(WHILE_LABEL, $1);
+
+                address = idcheck($2);
+                gen_code(LD_VAR, address);
+
+                gen_code(LD_INT, $6);
+                gen_code(LT_OP, gen_label());
+
+                gen_code(WHILE_START, $1);
+
+                address = idcheck($9);
+                gen_code(LD_VAR, address);
+                gen_code(LD_INT, $11);
+                gen_code(ADD, -1);
+                gen_code(STORE, address);
+
+
+                address = idcheck($2);
+                gen_code(LD_VAR, address);
+                gen_code(LD_INT, 1);
+                gen_code(ADD, -1);
+                gen_code(STORE, address);
+
+                gen_code(WHILE_END, $1);
